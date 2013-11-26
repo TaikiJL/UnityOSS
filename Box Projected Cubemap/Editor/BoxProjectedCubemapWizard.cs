@@ -28,12 +28,12 @@ public class BoxProjectedCubemapWizard : ScriptableWizard {
 		}
 		cubemapProbe.transform.parent = cubemapProbes.transform;
 		cubemapProbe.renderer.castShadows = false;
-		BoxProjectedCubemapScript cubemapScript = cubemapProbe.AddComponent("BoxProjectedCubemapScript") as BoxProjectedCubemapScript;
+		CubemapProbeScript cubemapProbeScript = cubemapProbe.AddComponent("CubemapProbeScript") as BoxProjectedCubemapScript;
 		Vector3 boxSize = new Vector3(
 			Mathf.Abs(endPoint.position.x - startPoint.position.x),
 			Mathf.Abs(endPoint.position.y - startPoint.position.y),
 			Mathf.Abs(endPoint.position.z - startPoint.position.z));
-		cubemapScript.SetBoxParameters(boxSize, center);
+		cubemapProbeScript.SetBoxParameters(boxSize, center);
 		
 		// Render cubemap
 		foreach (Renderer rdr in renderersToExclude) {

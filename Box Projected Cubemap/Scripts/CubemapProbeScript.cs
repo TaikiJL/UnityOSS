@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BoxProjectedCubemapScript : MonoBehaviour {
+public class CubemapProbeScript : MonoBehaviour {
 	
 	[SerializeField]
 	private Vector3 boxSize, boxPosition;
