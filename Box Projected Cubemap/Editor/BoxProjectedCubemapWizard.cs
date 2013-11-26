@@ -57,7 +57,7 @@ public class BoxProjectedCubemapWizard : ScriptableWizard {
 		Material reflectiveMat = new Material(Shader.Find("Reflective/Diffuse"));
 		reflectiveMat.SetTexture("_Cube", cubemap);
 		reflectiveMat.SetColor("_Color", Color.black);
-		AssetDatabase.CreateAsset(reflectiveMat, "Assets/Materials/" + cubemapName + ".mat");
+		AssetDatabase.CreateAsset(reflectiveMat, "Assets/" + cubemapName + ".mat");
 		cubemapProbe.renderer.material = reflectiveMat;
 		
 		// Assign cubemap and correct size to materials using the parallax-corrected reflective shader
