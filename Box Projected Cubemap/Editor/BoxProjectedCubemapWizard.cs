@@ -6,7 +6,7 @@ public class BoxProjectedCubemapWizard : ScriptableWizard {
 	
 	public string cubemapName = "Cubemap Zone 01";
 	public int cubemapResolution = 256;
-	public Transform startPoint, endPoint;
+	public Transform startPoint = null, endPoint = null;
 	public Renderer[] parallaxCorrectedMaterials;
 	public Renderer[] renderersToExclude;
 	
