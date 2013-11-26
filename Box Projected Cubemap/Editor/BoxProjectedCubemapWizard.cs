@@ -41,12 +41,9 @@ public class BoxProjectedCubemapWizard : ScriptableWizard {
 			rdr.enabled = false;
 		}
 		cubemapProbe.renderer.enabled = false;
-		GameObject cubemapCamera = new GameObject();
-		cubemapCamera.AddComponent("Camera");
-		cubemapCamera.transform.position = center;
-		cubemapCamera.transform.rotation = Quaternion.identity;
+		Camera cubemapCamera = cubemapProbe.AddComponent("Camera") as Camera;
 		Cubemap cubemap = new Cubemap(cubemapResolution, TextureFormat.RGB24, true);
-		cubemapCamera.camera.RenderToCubemap(cubemap);
+		cubemapCamera.RenderToCubemap(cubemap);
 		AssetDatabase.CreateAsset(cubemap, "Assets/" + cubemapName + ".cubemap");
 		DestroyImmediate(cubemapCamera);
 		cubemapProbe.renderer.enabled = true;
