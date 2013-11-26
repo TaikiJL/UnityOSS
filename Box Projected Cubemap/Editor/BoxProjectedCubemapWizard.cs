@@ -28,7 +28,7 @@ public class BoxProjectedCubemapWizard : ScriptableWizard {
 		}
 		cubemapProbe.transform.parent = cubemapProbes.transform;
 		cubemapProbe.renderer.castShadows = false;
-		CubemapProbeScript cubemapProbeScript = cubemapProbe.AddComponent("CubemapProbeScript") as BoxProjectedCubemapScript;
+		CubemapProbeScript cubemapProbeScript = cubemapProbe.AddComponent("CubemapProbeScript") as CubemapProbeScript;
 		Vector3 boxSize = new Vector3(
 			Mathf.Abs(endPoint.position.x - startPoint.position.x),
 			Mathf.Abs(endPoint.position.y - startPoint.position.y),
