@@ -16,6 +16,7 @@ public class BoxProjectedCubemapWizard : ScriptableWizard {
     }
 	
     void OnWizardCreate () {
+    	if (startPoint != null && endPoint != null) {
         // Create a cubemap probe
 		Vector3 center = startPoint.position + (endPoint.position - startPoint.position)/2;
 		GameObject cubemapProbe = GameObject.CreatePrimitive(PrimitiveType.Sphere);
@@ -66,6 +67,9 @@ public class BoxProjectedCubemapWizard : ScriptableWizard {
 			rdr.sharedMaterial.SetVector("_BoxPosition", center);
 			rdr.sharedMaterial.SetVector("_BoxSize", boxSize);
 		}
+    	} else {
+    		Debug.Log("Please set the two points to define the bounding box.");
+    	}
     }
 	
     void OnWizardUpdate () {
