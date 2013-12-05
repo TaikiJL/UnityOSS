@@ -51,7 +51,6 @@ void surf (Input IN, inout SurfaceOutput o) {
     
     float3 nReflDirection = normalize(reflDirection);
     float3 boxStart = _BoxPosition -_BoxSize/2;
-    //boxStart.y = 0;
     float3 firstPlaneIntersect = (boxStart + _BoxSize - IN.worldPos) / nReflDirection;
     float3 secondPlaneIntersect = (boxStart - IN.worldPos) / nReflDirection;
     float3 furthestPlane = (nReflDirection > 0) ? firstPlaneIntersect : secondPlaneIntersect;
