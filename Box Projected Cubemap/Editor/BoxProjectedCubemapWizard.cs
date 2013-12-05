@@ -8,7 +8,7 @@ public class BoxProjectedCubemapWizard : ScriptableWizard {
 	public int cubemapResolution = 256;
 	public Transform startPoint = null, endPoint = null;
 	public Renderer[] parallaxCorrectedMaterials;
-	public Renderer[] renderersToExclude;
+	public GameObject[] renderersToExclude;
 	
 	[MenuItem ("GameObject/Create Box Projected Cubemap")]
     static void CreateWizard () {
@@ -37,8 +37,10 @@ public class BoxProjectedCubemapWizard : ScriptableWizard {
 		cubemapProbeScript.SetBoxParameters(boxSize, center);
 		
 		// Render cubemap
-		foreach (Renderer rdr in renderersToExclude) {
-			rdr.enabled = false;
+		foreach (GameObject go in renderersToExclude) {
+			foreach (Renderer rdr in go.GetComponentsInChildren<Renderer>()) {
+				rdr.enabled = false;
+			}
 		}
 		cubemapProbe.renderer.enabled = false;
 		Camera cubemapCamera = cubemapProbe.AddComponent("Camera") as Camera;
@@ -47,8 +49,10 @@ public class BoxProjectedCubemapWizard : ScriptableWizard {
 		AssetDatabase.CreateAsset(cubemap, "Assets/" + cubemapName + ".cubemap");
 		DestroyImmediate(cubemapCamera);
 		cubemapProbe.renderer.enabled = true;
-		foreach (Renderer rdr in renderersToExclude) {
-			rdr.enabled = true;
+		foreach (GameObject go in renderersToExclude) {
+			foreach (Renderer rdr in go.GetComponentsInChildren<Renderer>()) {
+				rdr.enabled = true;
+			}
 		}
 		
 		// Create and assign reflective material with rendered cubemap
