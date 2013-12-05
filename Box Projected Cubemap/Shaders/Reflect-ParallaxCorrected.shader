@@ -24,7 +24,7 @@ samplerCUBE _Cube;
 fixed4 _Color;
 fixed4 _ReflectColor;
 fixed4 _BoxSize;
-float4 _BoxPosition;
+fixed4 _BoxPosition;
 
 struct Input {
     float2 uv_MainTex;
