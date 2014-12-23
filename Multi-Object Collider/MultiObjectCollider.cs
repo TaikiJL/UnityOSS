@@ -1,38 +1,44 @@
 ﻿using UnityEngine;
-using UnityEditor;
 using System.Collections;
 
-public class ColliderWizard : ScriptableWizard {
+public enum ColliderType { box, sphere, capsule, mesh, none };
 
-	public enum ColliderType { box, sphere, capsule, mesh };
-	public ColliderType colliderType = ColliderType.box;
+public class MultiObjectCollider : MonoBehaviour {
 
-	private string selectedColliderType;
-
-	[MenuItem ("GameObject/Create Collider")]
-	static void CreateWizard () {
-		ScriptableWizard.DisplayWizard<ColliderWizard>("Create Collider", "Create");
-	}
-
-	void OnWizardCreate () {
+	public static void CreateCollider (GameObject[] gameObjects, ColliderType colliderType, bool removeExistingColliders = true) {
+		string selectedColliderType = "";
+		
 		switch (colliderType) {
-			case ColliderType.box:
-				selectedColliderType = "BoxCollider";
-				break;
-			case ColliderType.sphere:
-				selectedColliderType = "SphereCollider";
-				break;
-			case ColliderType.capsule:
-				selectedColliderType = "CapsuleCollider";
-				break;
-			case ColliderType.mesh:
-				selectedColliderType = "MeshCollider";
-				break;
-			default:
-				break;
+		case ColliderType.box:
+			selectedColliderType = "BoxCollider";
+			break;
+		case ColliderType.sphere:
+			selectedColliderType = "SphereCollider";
+			break;
+		case ColliderType.capsule:
+			selectedColliderType = "CapsuleCollider";
+			break;
+		case ColliderType.mesh:
+			selectedColliderType = "MeshCollider";
+			break;
+		case ColliderType.none:
+			selectedColliderType = "None";
+			break;
+		default:
+			break;
 		}
-
-		foreach (GameObject selectedObject in Selection.gameObjects) {
+		
+		foreach (GameObject selectedObject in gameObjects) {
+			if (removeExistingColliders) {
+				Collider[] colliders = selectedObject.GetComponentsInChildren<Collider>();
+				
+				foreach (Collider currentCollider in colliders)
+					DestroyImmediate(currentCollider);
+			}
+			
+			if (selectedColliderType == "None")
+				return;
+			
 			// Checks if the object has any child
 			if (selectedObject.GetComponentsInChildren<Transform>().Length > 1) {
 				// Gets and saves the object's initial Transform and initializes it.
@@ -42,7 +48,7 @@ public class ColliderWizard : ScriptableWizard {
 				Quaternion initialRotation = objectTransform.rotation;
 				objectTransform.position = Vector3.zero;
 				objectTransform.rotation = Quaternion.identity;
-
+				
 				// Combine the meshes
 				MeshFilter[] meshFilters = selectedObject.GetComponentsInChildren<MeshFilter>();
 				CombineInstance[] combine = new CombineInstance[meshFilters.Length];
@@ -50,7 +56,7 @@ public class ColliderWizard : ScriptableWizard {
 					combine[i].mesh = meshFilters[i].sharedMesh;
 					combine[i].transform = meshFilters[i].transform.localToWorldMatrix;
 				}
-
+				
 				// If the root object has already a mesh filter, stores it to give it back later
 				MeshFilter tempMeshFilter;
 				Mesh intialMesh;
@@ -62,27 +68,20 @@ public class ColliderWizard : ScriptableWizard {
 				}
 				tempMeshFilter.sharedMesh = new Mesh();
 				tempMeshFilter.sharedMesh.CombineMeshes(combine);
-
+				
 				selectedObject.AddComponent(selectedColliderType);
-
+				
 				DestroyImmediate(tempMeshFilter);
 				if (intialMesh != null) {
 					MeshFilter meshFilter = selectedObject.AddComponent("MeshFilter") as MeshFilter;
 					meshFilter.mesh = intialMesh;
 				}
-
+				
 				objectTransform.position = initialPosition;
 				objectTransform.rotation = initialRotation;
 			} else {
 				selectedObject.AddComponent(selectedColliderType);
 			}
 		}
-	}
-	
-	void OnWizardUpdate () {
-		helpString = "Add a collider to your object." +
-			"If your object is composed of multiple GameObject children," +
-			"the collider parameters will take into account their meshes" +
-			"to fit around them correctly.";
 	}
 }
