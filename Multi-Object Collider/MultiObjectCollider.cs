@@ -1,33 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public enum ColliderType { box, sphere, capsule, mesh, none };
+public enum ColliderType { Box, Sphere, Capsule, Mesh, None };
 
 public class MultiObjectCollider : MonoBehaviour {
-
+	
 	public static void CreateCollider (GameObject[] gameObjects, ColliderType colliderType, bool removeExistingColliders = true) {
-		string selectedColliderType = "";
-		
-		switch (colliderType) {
-		case ColliderType.box:
-			selectedColliderType = "BoxCollider";
-			break;
-		case ColliderType.sphere:
-			selectedColliderType = "SphereCollider";
-			break;
-		case ColliderType.capsule:
-			selectedColliderType = "CapsuleCollider";
-			break;
-		case ColliderType.mesh:
-			selectedColliderType = "MeshCollider";
-			break;
-		case ColliderType.none:
-			selectedColliderType = "None";
-			break;
-		default:
-			break;
-		}
-		
 		foreach (GameObject selectedObject in gameObjects) {
 			if (removeExistingColliders) {
 				Collider[] colliders = selectedObject.GetComponentsInChildren<Collider>();
@@ -36,7 +14,7 @@ public class MultiObjectCollider : MonoBehaviour {
 					DestroyImmediate(currentCollider);
 			}
 			
-			if (selectedColliderType == "None")
+			if (colliderType == ColliderType.None)
 				return;
 			
 			// Checks if the object has any child
@@ -64,24 +42,46 @@ public class MultiObjectCollider : MonoBehaviour {
 					intialMesh = tempMeshFilter.sharedMesh;
 				} else {
 					intialMesh = null;
-					tempMeshFilter = selectedObject.AddComponent("MeshFilter") as MeshFilter;
+					tempMeshFilter = selectedObject.AddComponent<MeshFilter>() as MeshFilter;
 				}
 				tempMeshFilter.sharedMesh = new Mesh();
 				tempMeshFilter.sharedMesh.CombineMeshes(combine);
 				
-				selectedObject.AddComponent(selectedColliderType);
+				AddCollider(selectedObject, colliderType);
 				
 				DestroyImmediate(tempMeshFilter);
 				if (intialMesh != null) {
-					MeshFilter meshFilter = selectedObject.AddComponent("MeshFilter") as MeshFilter;
+					MeshFilter meshFilter = selectedObject.AddComponent<MeshFilter>() as MeshFilter;
 					meshFilter.mesh = intialMesh;
 				}
 				
 				objectTransform.position = initialPosition;
 				objectTransform.rotation = initialRotation;
 			} else {
-				selectedObject.AddComponent(selectedColliderType);
+				AddCollider(selectedObject, colliderType);
 			}
 		}
 	}
+	
+	private static void AddCollider(GameObject selectedObject, ColliderType colliderType)
+	{
+		switch (colliderType)
+		{
+		case ColliderType.Box:
+			selectedObject.AddComponent<BoxCollider>();
+			break;
+		case ColliderType.Sphere:
+			selectedObject.AddComponent<SphereCollider>();
+			break;
+		case ColliderType.Capsule:
+			selectedObject.AddComponent<CapsuleCollider>();
+			break;
+		case ColliderType.Mesh:
+			selectedObject.AddComponent<MeshCollider>();
+			break;
+		default:
+			break;
+		}
+	}
+	
 }
