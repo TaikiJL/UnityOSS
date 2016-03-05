@@ -21,6 +21,8 @@ public class GUIResizer
     private static IEnumerator m_Coroutine = null;
     private static EditorWindow m_Window = null;
 
+    private GUIResizer() { }
+
     /// <summary>
     /// Resizing control for a GUI element.
     /// </summary>
