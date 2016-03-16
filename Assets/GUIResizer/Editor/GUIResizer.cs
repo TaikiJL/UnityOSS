@@ -45,6 +45,32 @@ public class GUIResizer
     }
 
     /// <summary>
+    /// Resizing splitter control for a GUI element.
+    /// </summary>
+    /// <param name="resizeFunc">The function in which the size variable should be modified.</param>
+    /// <param name="direction">The direction of the resizing (horizontal or vertical)</param>
+    /// <param name="window">The editor window which holds the GUI element to resize.</param>
+    public static void Control(Action<float> resizeFunc, ResizeDirection direction, EditorWindow window)
+    {
+        Rect lastControlRect = GUILayoutUtility.GetLastRect();
+        GUILayout.Space(4f);
+        Rect spaceRect = GUILayoutUtility.GetLastRect();
+        if (direction == ResizeDirection.Horizontal)
+            spaceRect.height = lastControlRect.height;
+        else
+            spaceRect.width = lastControlRect.width;
+        Color prevColor = GUI.color;
+        if (EditorGUIUtility.isProSkin)
+            GUI.color = new Color32(41, 41, 41, 255);
+        else
+            GUI.color = new Color32(86, 86, 86, 255);
+        GUI.DrawTexture(spaceRect, EditorGUIUtility.whiteTexture);
+        GUI.color = prevColor;
+
+        Control(resizeFunc, spaceRect, direction, window);
+    }
+
+    /// <summary>
     /// Update the resizing (must be called from an EditorWindow's OnGUI).
     /// </summary>
     /// <param name="window">The EditorWindow calling the function.</param>
