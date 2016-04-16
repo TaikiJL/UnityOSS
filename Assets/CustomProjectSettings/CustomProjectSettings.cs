@@ -24,7 +24,6 @@ public abstract class CustomProjectSettings<T> : ScriptableObject where T : Cust
             {
                 string typeName = typeof(T).Name;
 #if UNITY_EDITOR
-                
                 if (!Application.isPlaying)
                 {
                     var asset = Resources.Load(typeName);
