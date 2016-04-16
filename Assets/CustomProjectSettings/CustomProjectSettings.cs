@@ -74,7 +74,7 @@ public abstract class CustomProjectSettings<T> : ScriptableObject where T : Cust
     /// [EDITOR-ONLY] Selects the settings and makes it editable in the Unity Inspector.
     /// It is recommended to implement a function which calls this function and with the [MenuItem] attribute.
     /// </summary>
-    protected static void SelectSettings()
+    public static void SelectSettings()
     {
         Selection.activeObject = instance;
     }
