@@ -1,22 +1,26 @@
 ﻿using UnityEngine;
 using UnityEditor;
-using System.Collections;
 
 public class MultiObjectColliderWizard : ScriptableWizard
 {
 	
-	[SerializeField] public ColliderType _colliderType = ColliderType.Box;
-	[SerializeField] public bool _removeExistingColliders = true;
+	[SerializeField]
+    private ColliderType m_ColliderType = ColliderType.Box;
+	[SerializeField]
+    private bool m_RemoveExistingColliders = true;
 	
 	[MenuItem ("CustomTools/Multi-object Collider &c")]
 	static void CreateWizard()
     {
-		ScriptableWizard.DisplayWizard<MultiObjectColliderWizard>("Create a Collider", "Create");
+		DisplayWizard<MultiObjectColliderWizard>("Create a Collider", "Create");
 	}
 	
 	void OnWizardCreate()
     {
-		MultiObjectCollider.CreateCollider(Selection.gameObjects, _colliderType, _removeExistingColliders);
+        foreach (var gameObject in Selection.gameObjects)
+        {
+            MultiObjectCollider.CreateCollider(gameObject, m_ColliderType, m_RemoveExistingColliders);
+        }
 		
 		CreateWizard();
 	}
@@ -25,4 +29,5 @@ public class MultiObjectColliderWizard : ScriptableWizard
     {
         helpString = "Adds a collider to the selected GameObjects. The collider will wrap the GameObjects' children.";
 	}
+
 }
