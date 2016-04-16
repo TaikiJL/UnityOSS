@@ -24,12 +24,12 @@ public abstract class CustomProjectSettings<T> : ScriptableObject where T : Cust
             {
                 string typeName = typeof(T).Name;
 #if UNITY_EDITOR
+                
                 if (!Application.isPlaying)
                 {
-                    m_Instance = AssetDatabase.LoadAssetAtPath<T>(typeName + ".asset");
-                    if (m_Instance == null)
+                    var asset = Resources.Load(typeName);
+                    if (asset == null)
                     {
-
                         var paths = Directory.GetFiles(
                             "Assets/", "CustomProjectSettings.cs",
                             SearchOption.AllDirectories);
@@ -52,6 +52,11 @@ public abstract class CustomProjectSettings<T> : ScriptableObject where T : Cust
                         AssetDatabase.CreateAsset(m_Instance, resourcesPath + typeName + ".asset");
                         AssetDatabase.SaveAssets();
                         AssetDatabase.Refresh();
+                    }
+                    else
+                    {
+                        m_Instance = AssetDatabase.LoadAssetAtPath<T>(
+                            AssetDatabase.GetAssetPath(asset));
                     }
                     return m_Instance;
                 }

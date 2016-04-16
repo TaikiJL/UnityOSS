@@ -11,4 +11,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e4baab6e1ec9e742be7236b0a6ab0bf, type: 3}
   m_Name: ExampleSettings
   m_EditorClassIdentifier: 
-  m_SomeFloatValue: 0
+  m_SomeFloatValue: 48
