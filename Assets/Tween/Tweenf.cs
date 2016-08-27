@@ -306,8 +306,6 @@ public struct Tweenf
 
     public delegate float TweenFunc(float a, float b, float t);
 
-    // To do: lazy initialization
-
     private static TweenFunc _quadraticEaseIn;
     private static TweenFunc _quadraticEaseOut;
     private static TweenFunc _quadraticEaseInOut;
@@ -464,17 +462,13 @@ public struct Tweenf
         if (!ignoreTimeScale)
         {
             for (float t = 0f; t <= duration; t += Time.deltaTime)
-            {
                 yield return tweenFunc(0f, 1f, t * dInverse);
-            }
             yield return 1f;
         }
         else
         {
             for (float t = 0f; t <= duration; t += Time.unscaledDeltaTime)
-            {
                 yield return tweenFunc(0f, 1f, t * dInverse);
-            }
             yield return 1f;
         }
     }
@@ -598,9 +592,9 @@ public static class TweenfExtensions
     public static IEnumerator Move(this Transform transform,
         Vector3 targetPosition,
         float duration,
-        bool ignoreTimeScale,
         TweenfType tweenType,
-        bool unclamped = false)
+        bool unclamped = false,
+        bool ignoreTimeScale = false)
     {
         var tweenf = Tweenf.GetTweenFunction(tweenType, !unclamped);
         float dInverse = 1f / duration;
@@ -629,9 +623,9 @@ public static class TweenfExtensions
     public static IEnumerator MoveLocal(this Transform transform,
         Vector3 targetPosition,
         float duration,
-        bool ignoreTimeScale,
         TweenfType tweenType,
-        bool unclamped = false)
+        bool unclamped = false,
+        bool ignoreTimeScale = false)
     {
         var tweenf = Tweenf.GetTweenFunction(tweenType, !unclamped);
         float dInverse = 1f / duration;
@@ -657,12 +651,12 @@ public static class TweenfExtensions
         transform.position = targetPosition;
     }
 
-    public static IEnumerator Move(this RectTransform transform,
+    public static IEnumerator MoveAnchoredPosition(this RectTransform transform,
         Vector2 targetPosition,
         float duration,
-        bool ignoreTimeScale,
         TweenfType tweenType,
-        bool unclamped = false)
+        bool unclamped = false,
+        bool ignoreTimeScale = false)
     {
         var tweenf = Tweenf.GetTweenFunction(tweenType, !unclamped);
         float dInverse = 1f / duration;
@@ -688,12 +682,12 @@ public static class TweenfExtensions
         transform.anchoredPosition = targetPosition;
     }
 
-    public static IEnumerator Move(this RectTransform transform,
+    public static IEnumerator MoveAnchoredPosition3D(this RectTransform transform,
         Vector3 targetPosition,
         float duration,
-        bool ignoreTimeScale,
         TweenfType tweenType,
-        bool unclamped = false)
+        bool unclamped = false,
+        bool ignoreTimeScale = false)
     {
         var tweenf = Tweenf.GetTweenFunction(tweenType, !unclamped);
         float dInverse = 1f / duration;
