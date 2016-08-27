@@ -308,49 +308,49 @@ public struct Tweenf
 
     // To do: lazy initialization
 
-    private static readonly TweenFunc QUADRATIC_EASE_IN         = new TweenFunc(QuadraticEaseIn);
-    private static readonly TweenFunc QUADRATIC_EASE_OUT        = new TweenFunc(QuadraticEaseOut);
-    private static readonly TweenFunc QUADRATIC_EASE_IN_OUT     = new TweenFunc(QuadraticEaseInOut);
-    private static readonly TweenFunc CUBIC_EASE_IN             = new TweenFunc(CubicEaseIn);
-    private static readonly TweenFunc CUBIC_EASE_OUT            = new TweenFunc(CubicEaseOut);
-    private static readonly TweenFunc CUBIC_EASE_IN_OUT         = new TweenFunc(CubicEaseInOut);
-    private static readonly TweenFunc QUARTIC_EASE_IN           = new TweenFunc(QuarticEaseIn);
-    private static readonly TweenFunc QUARTIC_EASE_OUT          = new TweenFunc(QuarticEaseOut);
-    private static readonly TweenFunc QUARTIC_EASE_IN_OUT       = new TweenFunc(QuarticEaseInOut);
-    private static readonly TweenFunc QUINTIC_EASE_IN           = new TweenFunc(QuinticEaseIn);
-    private static readonly TweenFunc QUINTIC_EASE_OUT          = new TweenFunc(QuinticEaseOut);
-    private static readonly TweenFunc QUINTIC_EASE_IN_OUT       = new TweenFunc(QuinticEaseInOut);
-    private static readonly TweenFunc SINE_EASE_IN              = new TweenFunc(SineEaseIn);
-    private static readonly TweenFunc SINE_EASE_OUT             = new TweenFunc(SineEaseOut);
-    private static readonly TweenFunc SINE_EASE_IN_OUT          = new TweenFunc(SineEaseInOut);
-    private static readonly TweenFunc EXPO_EASE_IN              = new TweenFunc(ExpoEaseIn);
-    private static readonly TweenFunc EXPO_EASE_OUT             = new TweenFunc(ExpoEaseOut);
-    private static readonly TweenFunc EXPO_EASE_IN_OUT          = new TweenFunc(ExpoEaseInOut);
-    private static readonly TweenFunc CIRCULAR_EASE_IN          = new TweenFunc(CircularEaseIn);
-    private static readonly TweenFunc CIRCULAR_EASE_OUT         = new TweenFunc(CircularEaseOut);
-    private static readonly TweenFunc CIRCULAR_EASE_IN_OUT      = new TweenFunc(CircularEaseInOut);
+    private static TweenFunc _quadraticEaseIn;
+    private static TweenFunc _quadraticEaseOut;
+    private static TweenFunc _quadraticEaseInOut;
+    private static TweenFunc _cubicEaseIn;
+    private static TweenFunc _cubicEaseOut;
+    private static TweenFunc _cubicEaseInOut;
+    private static TweenFunc _quarticEaseIn;
+    private static TweenFunc _quarticEaseOut;
+    private static TweenFunc _quarticEaseInOut;
+    private static TweenFunc _quinticEaseIn;
+    private static TweenFunc _quinticEaseOut;
+    private static TweenFunc _quinticEaseInOut;
+    private static TweenFunc _sineEaseIn;
+    private static TweenFunc _sineEaseOut;
+    private static TweenFunc _sineEaseInOut;
+    private static TweenFunc _expoEaseIn;
+    private static TweenFunc _expoEaseOut;
+    private static TweenFunc _expoEaseInOut;
+    private static TweenFunc _circularEaseIn;
+    private static TweenFunc _circularEaseOut;
+    private static TweenFunc _circularEaseInOut;
 
-    private static readonly TweenFunc QUADRATIC_EASE_IN_UNCLAMPED           = new TweenFunc(QuadraticEaseInUnclamped);
-    private static readonly TweenFunc QUADRATIC_EASE_OUT_UNCLAMPED          = new TweenFunc(QuadraticEaseOutUnclamped);
-    private static readonly TweenFunc QUADRATIC_EASE_IN_OUT_UNCLAMPED       = new TweenFunc(QuadraticEaseInOutUnclamped);
-    private static readonly TweenFunc CUBIC_EASE_IN_UNCLAMPED               = new TweenFunc(CubicEaseInUnclamped);
-    private static readonly TweenFunc CUBIC_EASE_OUT_UNCLAMPED              = new TweenFunc(CubicEaseOutUnclamped);
-    private static readonly TweenFunc CUBIC_EASE_IN_OUT_UNCLAMPED           = new TweenFunc(CubicEaseInOutUnclamped);
-    private static readonly TweenFunc QUARTIC_EASE_IN_UNCLAMPED             = new TweenFunc(QuarticEaseInUnclamped);
-    private static readonly TweenFunc QUARTIC_EASE_OUT_UNCLAMPED            = new TweenFunc(QuarticEaseOutUnclamped);
-    private static readonly TweenFunc QUARTIC_EASE_IN_OUT_UNCLAMPED         = new TweenFunc(QuarticEaseInOutUnclamped);
-    private static readonly TweenFunc QUINTIC_EASE_IN_UNCLAMPED             = new TweenFunc(QuinticEaseInUnclamped);
-    private static readonly TweenFunc QUINTIC_EASE_OUT_UNCLAMPED            = new TweenFunc(QuinticEaseOutUnclamped);
-    private static readonly TweenFunc QUINTIC_EASE_IN_OUT_UNCLAMPED         = new TweenFunc(QuinticEaseInOutUnclamped);
-    private static readonly TweenFunc SINE_EASE_IN_UNCLAMPED                = new TweenFunc(SineEaseInUnclamped);
-    private static readonly TweenFunc SINE_EASE_OUT_UNCLAMPED               = new TweenFunc(SineEaseOutUnclamped);
-    private static readonly TweenFunc SINE_EASE_IN_OUT_UNCLAMPED            = new TweenFunc(SineEaseInOutUnclamped);
-    private static readonly TweenFunc EXPO_EASE_IN_UNCLAMPED                = new TweenFunc(ExpoEaseInUnclamped);
-    private static readonly TweenFunc EXPO_EASE_OUT_UNCLAMPED               = new TweenFunc(ExpoEaseOutUnclamped);
-    private static readonly TweenFunc EXPO_EASE_IN_OUT_UNCLAMPED            = new TweenFunc(ExpoEaseInOutUnclamped);
-    private static readonly TweenFunc CIRCULAR_EASE_IN_UNCLAMPED            = new TweenFunc(CircularEaseInUnclamped);
-    private static readonly TweenFunc CIRCULAR_EASE_OUT_UNCLAMPED           = new TweenFunc(CircularEaseOutUnclamped);
-    private static readonly TweenFunc CIRCULAR_EASE_IN_OUT_UNCLAMPED        = new TweenFunc(CircularEaseInOutUnclamped);
+    private static TweenFunc _quadraticEaseInUnclamped;
+    private static TweenFunc _quadraticEaseOutUnclamped;
+    private static TweenFunc _quadraticEaseInOutUnclamped;
+    private static TweenFunc _cubicEaseInUnclamped;
+    private static TweenFunc _cubicEaseOutUnclamped;
+    private static TweenFunc _cubicEaseInOutUnclamped;
+    private static TweenFunc _quarticEaseInUnclamped;
+    private static TweenFunc _quarticEaseOutUnclamped;
+    private static TweenFunc _quarticEaseInOutUnclamped;
+    private static TweenFunc _quinticEaseInUnclamped;
+    private static TweenFunc _quinticEaseOutUnclamped;
+    private static TweenFunc _quinticEaseInOutUnclamped;
+    private static TweenFunc _sineEaseInUnclamped;
+    private static TweenFunc _sineEaseOutUnclamped;
+    private static TweenFunc _sineEaseInOutUnclamped;
+    private static TweenFunc _expoEaseInUnclamped;
+    private static TweenFunc _expoEaseOutUnclamped;
+    private static TweenFunc _expoEaseInOutUnclamped;
+    private static TweenFunc _circularEaseInUnclamped;
+    private static TweenFunc _circularEaseOutUnclamped;
+    private static TweenFunc _circularEaseInOutUnclamped;
 
     public static TweenFunc GetTweenFunction(TweenfType tweenType, bool clamped = true)
     {
@@ -358,27 +358,48 @@ public struct Tweenf
         {
             switch (tweenType)
             {
-                case TweenfType.QuadraticEaseIn:        return QUADRATIC_EASE_IN;
-                case TweenfType.QuadraticEaseOut:       return QUADRATIC_EASE_OUT;
-                case TweenfType.QuadraticEaseInOut:     return QUADRATIC_EASE_IN_OUT;
-                case TweenfType.CubicEaseIn:            return CUBIC_EASE_IN;
-                case TweenfType.CubicEaseOut:           return CUBIC_EASE_OUT;
-                case TweenfType.CubicEaseInOut:         return CUBIC_EASE_IN_OUT;
-                case TweenfType.QuarticEaseIn:          return QUARTIC_EASE_IN;
-                case TweenfType.QuarticEaseOut:         return QUARTIC_EASE_OUT; 
-                case TweenfType.QuarticEaseInOut:       return QUARTIC_EASE_IN_OUT;
-                case TweenfType.QuinticEaseIn:          return QUINTIC_EASE_IN;
-                case TweenfType.QuinticEaseOut:         return QUINTIC_EASE_OUT;
-                case TweenfType.QuinticEaseInOut:       return QUINTIC_EASE_IN_OUT;
-                case TweenfType.SineEaseIn:             return SINE_EASE_IN;       
-                case TweenfType.SineEaseOut:            return SINE_EASE_OUT;    
-                case TweenfType.SineEaseInOut:          return SINE_EASE_IN_OUT;
-                case TweenfType.ExpoEaseIn:             return EXPO_EASE_IN;       
-                case TweenfType.ExpoEaseOut:            return EXPO_EASE_OUT;    
-                case TweenfType.ExpoEaseInOut:          return EXPO_EASE_IN_OUT;    
-                case TweenfType.CircularEaseIn:         return CIRCULAR_EASE_IN;   
-                case TweenfType.CircularEaseOut:        return CIRCULAR_EASE_OUT;
-                case TweenfType.CircularEaseInOut:      return CIRCULAR_EASE_IN_OUT;
+                case TweenfType.QuadraticEaseIn:
+                    return _quadraticEaseIn ?? (_quadraticEaseIn = new TweenFunc(QuadraticEaseIn));
+                case TweenfType.QuadraticEaseOut:
+                    return _quadraticEaseOut ?? (_quadraticEaseOut = new TweenFunc(QuadraticEaseOut));
+                case TweenfType.QuadraticEaseInOut:
+                    return _quadraticEaseInOut ?? (_quadraticEaseInOut = new TweenFunc(QuadraticEaseInOut));
+                case TweenfType.CubicEaseIn:
+                    return _cubicEaseIn ?? (_cubicEaseIn = new TweenFunc(CubicEaseIn));
+                case TweenfType.CubicEaseOut:
+                    return _cubicEaseOut ?? (_cubicEaseOut = new TweenFunc(CubicEaseOut));
+                case TweenfType.CubicEaseInOut:
+                    return _cubicEaseInOut ?? (_cubicEaseInOut = new TweenFunc(CubicEaseInOut));
+                case TweenfType.QuarticEaseIn:
+                    return _quarticEaseIn ?? (_quarticEaseIn = new TweenFunc(QuarticEaseIn));
+                case TweenfType.QuarticEaseOut:
+                    return _quarticEaseOut ?? (_quarticEaseOut = new TweenFunc(QuarticEaseOut));
+                case TweenfType.QuarticEaseInOut:
+                    return _quarticEaseInOut ?? (_quarticEaseInOut = new TweenFunc(QuarticEaseInOut));
+                case TweenfType.QuinticEaseIn:
+                    return _quinticEaseIn ?? (_quinticEaseIn = new TweenFunc(QuinticEaseIn));
+                case TweenfType.QuinticEaseOut:
+                    return _quinticEaseOut ?? (_quinticEaseOut = new TweenFunc(QuinticEaseOut));
+                case TweenfType.QuinticEaseInOut:
+                    return _quinticEaseInOut ?? (_quinticEaseInOut = new TweenFunc(QuinticEaseInOut));
+                case TweenfType.SineEaseIn:
+                    return _sineEaseIn ?? (_sineEaseIn = new TweenFunc(SineEaseIn));
+                case TweenfType.SineEaseOut:
+                    return _sineEaseOut ?? (_sineEaseOut = new TweenFunc(SineEaseOut));
+                case TweenfType.SineEaseInOut:
+                    return _sineEaseInOut ?? (_sineEaseInOut = new TweenFunc(SineEaseInOut));
+                case TweenfType.ExpoEaseIn:
+                    return _expoEaseIn ?? (_expoEaseIn = new TweenFunc(ExpoEaseIn));
+                case TweenfType.ExpoEaseOut:
+                    return _expoEaseOut ?? (_expoEaseOut = new TweenFunc(ExpoEaseOut));
+                case TweenfType.ExpoEaseInOut:
+                    return _expoEaseInOut ?? (_expoEaseInOut = new TweenFunc(ExpoEaseInOut));
+                case TweenfType.CircularEaseIn:
+                    return _circularEaseIn ?? (_circularEaseIn = new TweenFunc(CircularEaseIn));
+                case TweenfType.CircularEaseOut:
+                    return _circularEaseOut ?? (_circularEaseOut = new TweenFunc(CircularEaseOut));
+                case TweenfType.CircularEaseInOut:
+                    return _circularEaseInOut ?? (_circularEaseInOut = new TweenFunc(CircularEaseInOut));
                 default: return Mathf.Lerp;
             }
         }
@@ -386,27 +407,48 @@ public struct Tweenf
         {
             switch (tweenType)
             {
-                case TweenfType.QuadraticEaseIn:        return QUADRATIC_EASE_IN_UNCLAMPED;
-                case TweenfType.QuadraticEaseOut:       return QUADRATIC_EASE_OUT_UNCLAMPED;
-                case TweenfType.QuadraticEaseInOut:     return QUADRATIC_EASE_IN_OUT_UNCLAMPED;
-                case TweenfType.CubicEaseIn:            return CUBIC_EASE_IN_UNCLAMPED;
-                case TweenfType.CubicEaseOut:           return CUBIC_EASE_OUT_UNCLAMPED;
-                case TweenfType.CubicEaseInOut:         return CUBIC_EASE_IN_OUT_UNCLAMPED;
-                case TweenfType.QuarticEaseIn:          return QUARTIC_EASE_IN_UNCLAMPED;
-                case TweenfType.QuarticEaseOut:         return QUARTIC_EASE_OUT_UNCLAMPED;
-                case TweenfType.QuarticEaseInOut:       return QUARTIC_EASE_IN_OUT_UNCLAMPED;
-                case TweenfType.QuinticEaseIn:          return QUINTIC_EASE_IN_UNCLAMPED;
-                case TweenfType.QuinticEaseOut:         return QUINTIC_EASE_OUT_UNCLAMPED;
-                case TweenfType.QuinticEaseInOut:       return QUINTIC_EASE_IN_OUT_UNCLAMPED;
-                case TweenfType.SineEaseIn:             return SINE_EASE_IN_UNCLAMPED;
-                case TweenfType.SineEaseOut:            return SINE_EASE_OUT_UNCLAMPED;
-                case TweenfType.SineEaseInOut:          return SINE_EASE_IN_OUT_UNCLAMPED;
-                case TweenfType.ExpoEaseIn:             return EXPO_EASE_IN_UNCLAMPED;
-                case TweenfType.ExpoEaseOut:            return EXPO_EASE_OUT_UNCLAMPED;
-                case TweenfType.ExpoEaseInOut:          return EXPO_EASE_IN_OUT_UNCLAMPED;
-                case TweenfType.CircularEaseIn:         return CIRCULAR_EASE_IN_UNCLAMPED;
-                case TweenfType.CircularEaseOut:        return CIRCULAR_EASE_OUT_UNCLAMPED;
-                case TweenfType.CircularEaseInOut:      return CIRCULAR_EASE_IN_OUT_UNCLAMPED;
+                case TweenfType.QuadraticEaseIn:
+                    return _quadraticEaseInUnclamped ?? (_quadraticEaseInUnclamped = new TweenFunc(QuadraticEaseInUnclamped));
+                case TweenfType.QuadraticEaseOut:
+                    return _quadraticEaseOutUnclamped ?? (_quadraticEaseOutUnclamped = new TweenFunc(QuadraticEaseOutUnclamped));
+                case TweenfType.QuadraticEaseInOut:
+                    return _quadraticEaseInOutUnclamped ?? (_quadraticEaseInOutUnclamped = new TweenFunc(QuadraticEaseInOutUnclamped));
+                case TweenfType.CubicEaseIn:
+                    return _cubicEaseInUnclamped ?? (_cubicEaseInUnclamped = new TweenFunc(CubicEaseInUnclamped));
+                case TweenfType.CubicEaseOut:
+                    return _cubicEaseOutUnclamped ?? (_cubicEaseOutUnclamped = new TweenFunc(CubicEaseOutUnclamped));
+                case TweenfType.CubicEaseInOut:
+                    return _cubicEaseInOutUnclamped ?? (_cubicEaseInOutUnclamped = new TweenFunc(CubicEaseInOutUnclamped));
+                case TweenfType.QuarticEaseIn:
+                    return _quarticEaseInUnclamped ?? (_quarticEaseInUnclamped = new TweenFunc(QuarticEaseInUnclamped));
+                case TweenfType.QuarticEaseOut:
+                    return _quarticEaseOutUnclamped ?? (_quarticEaseOutUnclamped = new TweenFunc(QuarticEaseOutUnclamped));
+                case TweenfType.QuarticEaseInOut:
+                    return _quarticEaseInOutUnclamped ?? (_quarticEaseInOutUnclamped = new TweenFunc(QuarticEaseInOutUnclamped));
+                case TweenfType.QuinticEaseIn:
+                    return _quinticEaseInUnclamped ?? (_quinticEaseInUnclamped = new TweenFunc(QuinticEaseInUnclamped));
+                case TweenfType.QuinticEaseOut:
+                    return _quinticEaseOutUnclamped ?? (_quinticEaseOutUnclamped = new TweenFunc(QuinticEaseOutUnclamped));
+                case TweenfType.QuinticEaseInOut:
+                    return _quinticEaseInOutUnclamped ?? (_quinticEaseInOutUnclamped = new TweenFunc(QuinticEaseInOutUnclamped));
+                case TweenfType.SineEaseIn:
+                    return _sineEaseInUnclamped ?? (_sineEaseInUnclamped = new TweenFunc(SineEaseInUnclamped));
+                case TweenfType.SineEaseOut:
+                    return _sineEaseOutUnclamped ?? (_sineEaseOutUnclamped = new TweenFunc(SineEaseOutUnclamped));
+                case TweenfType.SineEaseInOut:
+                    return _sineEaseInOutUnclamped ?? (_sineEaseInOutUnclamped = new TweenFunc(SineEaseInOutUnclamped));
+                case TweenfType.ExpoEaseIn:
+                    return _expoEaseInUnclamped ?? (_expoEaseInUnclamped = new TweenFunc(ExpoEaseInUnclamped));
+                case TweenfType.ExpoEaseOut:
+                    return _expoEaseOutUnclamped ?? (_expoEaseOutUnclamped = new TweenFunc(ExpoEaseOutUnclamped));
+                case TweenfType.ExpoEaseInOut:
+                    return _expoEaseInOutUnclamped ?? (_expoEaseInOutUnclamped = new TweenFunc(ExpoEaseInOutUnclamped));
+                case TweenfType.CircularEaseIn:
+                    return _circularEaseInUnclamped ?? (_circularEaseInUnclamped = new TweenFunc(CircularEaseInUnclamped));
+                case TweenfType.CircularEaseOut:
+                    return _circularEaseOutUnclamped ?? (_circularEaseOutUnclamped = new TweenFunc(CircularEaseOutUnclamped));
+                case TweenfType.CircularEaseInOut:
+                    return _circularEaseInOutUnclamped ?? (_circularEaseInOutUnclamped = new TweenFunc(CircularEaseInOutUnclamped));
                 default: return Mathf.LerpUnclamped;
             }
         }
