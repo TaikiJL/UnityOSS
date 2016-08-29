@@ -22,287 +22,287 @@ using System.Collections.Generic;
 public struct Tweenf
 {
 
-	#region Clamped
+    #region Clamped
 
-	public static float QuadraticEaseIn(float a, float b, float t)
-	{
-		float ct = Mathf.Clamp01(t);
-		return (b - a) * ct * ct + a;
-	}
+    public static float QuadraticEaseIn(float a, float b, float t)
+    {
+        float ct = Mathf.Clamp01(t);
+        return (b - a) * ct * ct + a;
+    }
 
-	public static float QuadraticEaseOut(float a, float b, float t)
-	{
-		float ct = Mathf.Clamp01(t);
-		return (a - b) * ct * (ct - 2f) + a;
-	}
+    public static float QuadraticEaseOut(float a, float b, float t)
+    {
+        float ct = Mathf.Clamp01(t);
+        return (a - b) * ct * (ct - 2f) + a;
+    }
 
-	public static float QuadraticEaseInOut(float a, float b, float t)
-	{
-		float ct = Mathf.Clamp01(t) * 2f;
-		if (ct < 1f)
-			return (b - a) * 0.5f * ct * ct + a;
-		--ct;
-		return (a - b) * 0.5f * (ct * (ct - 2f) - 1f) + a;
-	}
+    public static float QuadraticEaseInOut(float a, float b, float t)
+    {
+        float ct = Mathf.Clamp01(t) * 2f;
+        if (ct < 1f)
+            return (b - a) * 0.5f * ct * ct + a;
+        --ct;
+        return (a - b) * 0.5f * (ct * (ct - 2f) - 1f) + a;
+    }
 
-	public static float CubicEaseIn(float a, float b, float t)
-	{
-		float ct = Mathf.Clamp01(t);
-		return (b - a) * ct * ct * ct + a;
-	}
+    public static float CubicEaseIn(float a, float b, float t)
+    {
+        float ct = Mathf.Clamp01(t);
+        return (b - a) * ct * ct * ct + a;
+    }
 
-	public static float CubicEaseOut(float a, float b, float t)
-	{
-		float ct = Mathf.Clamp01(t) - 1f;
-		return (b - a) * (ct * ct * ct + 1f) + a;
-	}
+    public static float CubicEaseOut(float a, float b, float t)
+    {
+        float ct = Mathf.Clamp01(t) - 1f;
+        return (b - a) * (ct * ct * ct + 1f) + a;
+    }
 
-	public static float CubicEaseInOut(float a, float b, float t)
-	{
-		float ct = Mathf.Clamp01(t) * 2f;
-		if (ct < 1f)
-			return (b - a) * 0.5f * ct * ct * ct + a;
-		ct -= 2f;
-		return (b - a) * 0.5f * (ct * ct * ct + 2f) + a;
-	}
+    public static float CubicEaseInOut(float a, float b, float t)
+    {
+        float ct = Mathf.Clamp01(t) * 2f;
+        if (ct < 1f)
+            return (b - a) * 0.5f * ct * ct * ct + a;
+        ct -= 2f;
+        return (b - a) * 0.5f * (ct * ct * ct + 2f) + a;
+    }
 
-	public static float QuarticEaseIn(float a, float b, float t)
-	{
-		float ct = Mathf.Clamp01(t);
-		return (b - a) * ct * ct * ct * ct + a;
-	}
+    public static float QuarticEaseIn(float a, float b, float t)
+    {
+        float ct = Mathf.Clamp01(t);
+        return (b - a) * ct * ct * ct * ct + a;
+    }
 
-	public static float QuarticEaseOut(float a, float b, float t)
-	{
-		float ct = Mathf.Clamp01(t) - 1f;
-		return (a - b) * (ct * ct * ct * ct - 1f) + a;
-	}
+    public static float QuarticEaseOut(float a, float b, float t)
+    {
+        float ct = Mathf.Clamp01(t) - 1f;
+        return (a - b) * (ct * ct * ct * ct - 1f) + a;
+    }
 
-	public static float QuarticEaseInOut(float a, float b, float t)
-	{
-		float ct = Mathf.Clamp01(t) * 2f;
-		if (ct < 1f)
-			return (b - a) * 0.5f * ct * ct * ct * ct + a;
-		ct -= 2f;
-		return (a - b) * 0.5f * (ct * ct * ct * ct - 2f) + a;
-	}
+    public static float QuarticEaseInOut(float a, float b, float t)
+    {
+        float ct = Mathf.Clamp01(t) * 2f;
+        if (ct < 1f)
+            return (b - a) * 0.5f * ct * ct * ct * ct + a;
+        ct -= 2f;
+        return (a - b) * 0.5f * (ct * ct * ct * ct - 2f) + a;
+    }
 
-	public static float QuinticEaseIn(float a, float b, float t)
-	{
-		float ct = Mathf.Clamp01(t);
-		return (b - a) * ct * ct * ct * ct * ct + a;
-	}
+    public static float QuinticEaseIn(float a, float b, float t)
+    {
+        float ct = Mathf.Clamp01(t);
+        return (b - a) * ct * ct * ct * ct * ct + a;
+    }
 
-	public static float QuinticEaseOut(float a, float b, float t)
-	{
-		float ct = Mathf.Clamp01(t) - 1f;
-		return (b - a) * (ct * ct * ct * ct * ct + 1f) + a;
-	}
+    public static float QuinticEaseOut(float a, float b, float t)
+    {
+        float ct = Mathf.Clamp01(t) - 1f;
+        return (b - a) * (ct * ct * ct * ct * ct + 1f) + a;
+    }
 
-	public static float QuinticEaseInOut(float a, float b, float t)
-	{
-		float ct = Mathf.Clamp01(t) * 2f;
-		if (ct < 1f)
-			return (b - a) * 0.5f * ct * ct * ct * ct * ct + a;
-		ct -= 2f;
-		return (b - a) * 0.5f * (ct * ct * ct * ct * ct + 2f) + a;
-	}
+    public static float QuinticEaseInOut(float a, float b, float t)
+    {
+        float ct = Mathf.Clamp01(t) * 2f;
+        if (ct < 1f)
+            return (b - a) * 0.5f * ct * ct * ct * ct * ct + a;
+        ct -= 2f;
+        return (b - a) * 0.5f * (ct * ct * ct * ct * ct + 2f) + a;
+    }
 
-	public static float SineEaseIn(float a, float b, float t)
-	{
-		float d = b - a;
-		return -d * Mathf.Cos(Mathf.Clamp01(t) * Mathf.PI * 0.5f) + d + a;
-	}
+    public static float SineEaseIn(float a, float b, float t)
+    {
+        float d = b - a;
+        return -d * Mathf.Cos(Mathf.Clamp01(t) * Mathf.PI * 0.5f) + d + a;
+    }
 
-	public static float SineEaseOut(float a, float b, float t)
-	{
-		return (b - a) * Mathf.Sin(Mathf.Clamp01(t) * Mathf.PI * 0.5f) + a;
-	}
+    public static float SineEaseOut(float a, float b, float t)
+    {
+        return (b - a) * Mathf.Sin(Mathf.Clamp01(t) * Mathf.PI * 0.5f) + a;
+    }
 
-	public static float SineEaseInOut(float a, float b, float t)
-	{
-		return (a - b) * 0.5f * (Mathf.Cos(Mathf.Clamp01(t) * Mathf.PI) - 1f) + a;
-	}
+    public static float SineEaseInOut(float a, float b, float t)
+    {
+        return (a - b) * 0.5f * (Mathf.Cos(Mathf.Clamp01(t) * Mathf.PI) - 1f) + a;
+    }
 
-	public static float ExpoEaseIn(float a, float b, float t)
-	{
-		return (b - a) * Mathf.Pow(2f, 10f * (Mathf.Clamp01(t) - 1f)) + a;
-	}
+    public static float ExpoEaseIn(float a, float b, float t)
+    {
+        return (b - a) * Mathf.Pow(2f, 10f * (Mathf.Clamp01(t) - 1f)) + a;
+    }
 
-	public static float ExpoEaseOut(float a, float b, float t)
-	{
-		return (b - a) * (-Mathf.Pow(2f, -10f * (Mathf.Clamp01(t))) + 1f) + a;
-	}
+    public static float ExpoEaseOut(float a, float b, float t)
+    {
+        return (b - a) * (-Mathf.Pow(2f, -10f * (Mathf.Clamp01(t))) + 1f) + a;
+    }
 
-	public static float ExpoEaseInOut(float a, float b, float t)
-	{
-		float ct = Mathf.Clamp01(t) * 2f;
-		if (ct < 1f)
-			return (b - a) * 0.5f * Mathf.Pow(2f, 10f * (ct - 1f)) + a;
-		return (b - a) * 0.5f * (-Mathf.Pow(2f, -10f * (ct - 1)) + 2f) + a;
-	}
+    public static float ExpoEaseInOut(float a, float b, float t)
+    {
+        float ct = Mathf.Clamp01(t) * 2f;
+        if (ct < 1f)
+            return (b - a) * 0.5f * Mathf.Pow(2f, 10f * (ct - 1f)) + a;
+        return (b - a) * 0.5f * (-Mathf.Pow(2f, -10f * (ct - 1)) + 2f) + a;
+    }
 
-	public static float CircularEaseIn(float a, float b, float t)
-	{
-		float ct = Mathf.Clamp01(t);
-		return (a - b) * (Mathf.Sqrt(1f - ct * ct) - 1f) + a;
-	}
+    public static float CircularEaseIn(float a, float b, float t)
+    {
+        float ct = Mathf.Clamp01(t);
+        return (a - b) * (Mathf.Sqrt(1f - ct * ct) - 1f) + a;
+    }
 
-	public static float CircularEaseOut(float a, float b, float t)
-	{
-		float ct = Mathf.Clamp01(t) - 1f;
-		return (b - a) * Mathf.Sqrt(1f - ct * ct) + a;
-	}
+    public static float CircularEaseOut(float a, float b, float t)
+    {
+        float ct = Mathf.Clamp01(t) - 1f;
+        return (b - a) * Mathf.Sqrt(1f - ct * ct) + a;
+    }
 
-	public static float CircularEaseInOut(float a, float b, float t)
-	{
-		float ct = Mathf.Clamp01(t) * 2f;
-		if (ct < 1f)
-			return (a - b) * 0.5f * (Mathf.Sqrt(1f - ct * ct) - 1f) + a;
-		ct -= 2f;
-		return (b - a) * 0.5f * (Mathf.Sqrt(1f - ct * ct) + 1f) + a;
-	}
+    public static float CircularEaseInOut(float a, float b, float t)
+    {
+        float ct = Mathf.Clamp01(t) * 2f;
+        if (ct < 1f)
+            return (a - b) * 0.5f * (Mathf.Sqrt(1f - ct * ct) - 1f) + a;
+        ct -= 2f;
+        return (b - a) * 0.5f * (Mathf.Sqrt(1f - ct * ct) + 1f) + a;
+    }
 
-	#endregion
+    #endregion
 
-	#region Unclamped
+    #region Unclamped
 
-	public static float QuadraticEaseInUnclamped(float a, float b, float t)
-	{
-		return (b - a) * t * t + a;
-	}
+    public static float QuadraticEaseInUnclamped(float a, float b, float t)
+    {
+        return (b - a) * t * t + a;
+    }
 
-	public static float QuadraticEaseOutUnclamped(float a, float b, float t)
-	{
-		return (a - b) * t * (t - 2f) + a;
-	}
+    public static float QuadraticEaseOutUnclamped(float a, float b, float t)
+    {
+        return (a - b) * t * (t - 2f) + a;
+    }
 
-	public static float QuadraticEaseInOutUnclamped(float a, float b, float t)
-	{
-		t *= 2f;
-		if (t < 1f)
-			return (b - a) * 0.5f * t * t + a;
-		--t;
-		return (a - b) * 0.5f * (t * (t - 2f) - 1f) + a;
-	}
+    public static float QuadraticEaseInOutUnclamped(float a, float b, float t)
+    {
+        t *= 2f;
+        if (t < 1f)
+            return (b - a) * 0.5f * t * t + a;
+        --t;
+        return (a - b) * 0.5f * (t * (t - 2f) - 1f) + a;
+    }
 
-	public static float CubicEaseInUnclamped(float a, float b, float t)
-	{
-		return (b - a) * t * t * t + a;
-	}
+    public static float CubicEaseInUnclamped(float a, float b, float t)
+    {
+        return (b - a) * t * t * t + a;
+    }
 
-	public static float CubicEaseOutUnclamped(float a, float b, float t)
-	{
-		t -= 1f;
-		return (b - a) * (t * t * t + 1f) + a;
-	}
+    public static float CubicEaseOutUnclamped(float a, float b, float t)
+    {
+        t -= 1f;
+        return (b - a) * (t * t * t + 1f) + a;
+    }
 
-	public static float CubicEaseInOutUnclamped(float a, float b, float t)
-	{
-		t *= 2f;
-		if (t < 1f)
-			return (b - a) * 0.5f * t * t * t + a;
-		t -= 2f;
-		return (b - a) * 0.5f * (t * t * t + 2f) + a;
-	}
+    public static float CubicEaseInOutUnclamped(float a, float b, float t)
+    {
+        t *= 2f;
+        if (t < 1f)
+            return (b - a) * 0.5f * t * t * t + a;
+        t -= 2f;
+        return (b - a) * 0.5f * (t * t * t + 2f) + a;
+    }
 
-	public static float QuarticEaseInUnclamped(float a, float b, float t)
-	{
-		return (b - a) * t * t * t * t + a;
-	}
+    public static float QuarticEaseInUnclamped(float a, float b, float t)
+    {
+        return (b - a) * t * t * t * t + a;
+    }
 
-	public static float QuarticEaseOutUnclamped(float a, float b, float t)
-	{
-		t -= 1f;
-		return (a - b) * (t * t * t * t - 1f) + a;
-	}
+    public static float QuarticEaseOutUnclamped(float a, float b, float t)
+    {
+        t -= 1f;
+        return (a - b) * (t * t * t * t - 1f) + a;
+    }
 
-	public static float QuarticEaseInOutUnclamped(float a, float b, float t)
-	{
-		t *= 2f;
-		if (t < 1f)
-			return (b - a) * 0.5f * t * t * t * t + a;
-		t -= 2f;
-		return (a - b) * 0.5f * (t * t * t * t - 2f) + a;
-	}
+    public static float QuarticEaseInOutUnclamped(float a, float b, float t)
+    {
+        t *= 2f;
+        if (t < 1f)
+            return (b - a) * 0.5f * t * t * t * t + a;
+        t -= 2f;
+        return (a - b) * 0.5f * (t * t * t * t - 2f) + a;
+    }
 
-	public static float QuinticEaseInUnclamped(float a, float b, float t)
-	{
-		return (b - a) * t * t * t * t * t + a;
-	}
+    public static float QuinticEaseInUnclamped(float a, float b, float t)
+    {
+        return (b - a) * t * t * t * t * t + a;
+    }
 
-	public static float QuinticEaseOutUnclamped(float a, float b, float t)
-	{
-		t -= 1f;
-		return (b - a) * (t * t * t * t * t + 1f) + a;
-	}
+    public static float QuinticEaseOutUnclamped(float a, float b, float t)
+    {
+        t -= 1f;
+        return (b - a) * (t * t * t * t * t + 1f) + a;
+    }
 
-	public static float QuinticEaseInOutUnclamped(float a, float b, float t)
-	{
-		t *= 2f;
-		if (t < 1f)
-			return (b - a) * 0.5f * t * t * t * t * t + a;
-		t -= 2f;
-		return (b - a) * 0.5f * (t * t * t * t * t + 2f) + a;
-	}
+    public static float QuinticEaseInOutUnclamped(float a, float b, float t)
+    {
+        t *= 2f;
+        if (t < 1f)
+            return (b - a) * 0.5f * t * t * t * t * t + a;
+        t -= 2f;
+        return (b - a) * 0.5f * (t * t * t * t * t + 2f) + a;
+    }
 
-	public static float SineEaseInUnclamped(float a, float b, float t)
-	{
-		float d = b - a;
-		return -d * Mathf.Cos(t * Mathf.PI * 0.5f) + d + a;
-	}
+    public static float SineEaseInUnclamped(float a, float b, float t)
+    {
+        float d = b - a;
+        return -d * Mathf.Cos(t * Mathf.PI * 0.5f) + d + a;
+    }
 
-	public static float SineEaseOutUnclamped(float a, float b, float t)
-	{
-		return (b - a) * Mathf.Sin(t * Mathf.PI * 0.5f) + a;
-	}
+    public static float SineEaseOutUnclamped(float a, float b, float t)
+    {
+        return (b - a) * Mathf.Sin(t * Mathf.PI * 0.5f) + a;
+    }
 
-	public static float SineEaseInOutUnclamped(float a, float b, float t)
-	{
-		return (a - b) * 0.5f * (Mathf.Cos(t * Mathf.PI) - 1f) + a;
-	}
+    public static float SineEaseInOutUnclamped(float a, float b, float t)
+    {
+        return (a - b) * 0.5f * (Mathf.Cos(t * Mathf.PI) - 1f) + a;
+    }
 
-	public static float ExpoEaseInUnclamped(float a, float b, float t)
-	{
-		return (b - a) * Mathf.Pow(2f, 10f * (t - 1f)) + a;
-	}
+    public static float ExpoEaseInUnclamped(float a, float b, float t)
+    {
+        return (b - a) * Mathf.Pow(2f, 10f * (t - 1f)) + a;
+    }
 
-	public static float ExpoEaseOutUnclamped(float a, float b, float t)
-	{
-		return (b - a) * (-Mathf.Pow(2f, -10f * t) + 1f) + a;
-	}
+    public static float ExpoEaseOutUnclamped(float a, float b, float t)
+    {
+        return (b - a) * (-Mathf.Pow(2f, -10f * t) + 1f) + a;
+    }
 
-	public static float ExpoEaseInOutUnclamped(float a, float b, float t)
-	{
-		t *= 2f;
-		if (t < 1f)
-			return (b - a) * 0.5f * Mathf.Pow(2f, 10f * (t - 1f)) + a;
-		return (b - a) * 0.5f * (-Mathf.Pow(2f, -10f * (t - 1)) + 2f) + a;
-	}
+    public static float ExpoEaseInOutUnclamped(float a, float b, float t)
+    {
+        t *= 2f;
+        if (t < 1f)
+            return (b - a) * 0.5f * Mathf.Pow(2f, 10f * (t - 1f)) + a;
+        return (b - a) * 0.5f * (-Mathf.Pow(2f, -10f * (t - 1)) + 2f) + a;
+    }
 
-	public static float CircularEaseInUnclamped(float a, float b, float t)
-	{
-		return (a - b) * (Mathf.Sqrt(1f - t * t) - 1f) + a;
-	}
+    public static float CircularEaseInUnclamped(float a, float b, float t)
+    {
+        return (a - b) * (Mathf.Sqrt(1f - t * t) - 1f) + a;
+    }
 
-	public static float CircularEaseOutUnclamped(float a, float b, float t)
-	{
-		t -= 1f;
-		return (b - a) * Mathf.Sqrt(1f - t * t) + a;
-	}
+    public static float CircularEaseOutUnclamped(float a, float b, float t)
+    {
+        t -= 1f;
+        return (b - a) * Mathf.Sqrt(1f - t * t) + a;
+    }
 
-	public static float CircularEaseInOutUnclamped(float a, float b, float t)
-	{
-		t *= 2f;
-		if (t < 1f)
-			return (a - b) * 0.5f * (Mathf.Sqrt(1f - t * t) - 1f) + a;
-		t -= 2f;
-		return (b - a) * 0.5f * (Mathf.Sqrt(1f - t * t) + 1f) + a;
-	}
+    public static float CircularEaseInOutUnclamped(float a, float b, float t)
+    {
+        t *= 2f;
+        if (t < 1f)
+            return (a - b) * 0.5f * (Mathf.Sqrt(1f - t * t) - 1f) + a;
+        t -= 2f;
+        return (b - a) * 0.5f * (Mathf.Sqrt(1f - t * t) + 1f) + a;
+    }
 
-	#endregion
+    #endregion
 
-	#region Helpers
+    #region Helpers
 
     public delegate float TweenFunc(float a, float b, float t);
 
@@ -452,13 +452,13 @@ public struct Tweenf
         }
     }
 
-    public static IEnumerable<float> EnumberableTween(float duration,
+    public static IEnumerable<float> GetEnumerable(float duration,
         TweenfType tweenType,
         bool unclamped = false,
         bool ignoreTimeScale = false)
     {
         float dInverse = 1f / duration;
-        var tweenFunc = Tweenf.GetTweenFunction(tweenType, !unclamped);
+        var tweenFunc = GetTweenFunction(tweenType, !unclamped);
         if (!ignoreTimeScale)
         {
             for (float t = 0f; t <= duration; t += Time.deltaTime)
@@ -473,33 +473,62 @@ public struct Tweenf
         }
     }
 
-	#endregion
+    public static IEnumerator Update(Action<float> callback,
+        float duration,
+        TweenfType tweenType,
+        bool unclamped = false,
+        bool ignoreTimeScale = false)
+    {
+        float dInverse = 1f / duration;
+        var tweenFunc = GetTweenFunction(tweenType, !unclamped);
+        if (!ignoreTimeScale)
+        {
+            for (float t = 0f; t <= duration; t += Time.deltaTime)
+            {
+                float v = tweenFunc(0f, 1f, t * dInverse);
+                callback(v);
+                yield return null;
+            }
+        }
+        else
+        {
+            for (float t = 0f; t <= duration; t += Time.unscaledDeltaTime)
+            {
+                float v = tweenFunc(0f, 1f, t * dInverse);
+                callback(v);
+                yield return null;
+            }
+        }
+    }
+
+    #endregion
 
 }
 
 public enum TweenfType
 {
-	QuadraticEaseIn = 0,
-	QuadraticEaseOut,
-	QuadraticEaseInOut,
-	CubicEaseIn,
-	CubicEaseOut,
-	CubicEaseInOut,
-	QuarticEaseIn,
-	QuarticEaseOut,
-	QuarticEaseInOut,
-	QuinticEaseIn,
-	QuinticEaseOut,
-	QuinticEaseInOut,
-	SineEaseIn,
-	SineEaseOut,
-	SineEaseInOut,
-	ExpoEaseIn,
-	ExpoEaseOut,
-	ExpoEaseInOut,
-	CircularEaseIn,
-	CircularEaseOut,
-	CircularEaseInOut
+    Linear,
+    QuadraticEaseIn,
+    QuadraticEaseOut,
+    QuadraticEaseInOut,
+    CubicEaseIn,
+    CubicEaseOut,
+    CubicEaseInOut,
+    QuarticEaseIn,
+    QuarticEaseOut,
+    QuarticEaseInOut,
+    QuinticEaseIn,
+    QuinticEaseOut,
+    QuinticEaseInOut,
+    SineEaseIn,
+    SineEaseOut,
+    SineEaseInOut,
+    ExpoEaseIn,
+    ExpoEaseOut,
+    ExpoEaseInOut,
+    CircularEaseIn,
+    CircularEaseOut,
+    CircularEaseInOut
 }
 
 public static class TweenfExtensions
@@ -648,7 +677,7 @@ public static class TweenfExtensions
                 yield return null;
             }
         }
-        transform.position = targetPosition;
+        transform.localPosition = targetPosition;
     }
 
     public static IEnumerator MoveAnchoredPosition(this RectTransform transform,
