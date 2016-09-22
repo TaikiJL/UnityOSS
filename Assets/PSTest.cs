@@ -15,6 +15,8 @@ public class PSTest : MonoBehaviour {
 
     void OnGUI()
     {
+        GUI.color = Color.blue;
+        GUILayout.Label("Babou");
         GUI.color = TestProjectSettings.SomeColor;
         GUILayout.Label("Baboulinet");
     }
