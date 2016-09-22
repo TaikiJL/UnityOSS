@@ -38,7 +38,15 @@ public abstract class CustomProjectSettings<T> : ScriptableObject where T : Cust
 #if UNITY_EDITOR
                 if (!Application.isPlaying)
                 {
-                    var asset = Resources.Load(typeName);
+                    T asset = null;
+                    var files = Directory.GetFiles(
+                        "Assets/",
+                        typeName + ".asset",
+                        SearchOption.AllDirectories);
+                    if (files.Length > 0)
+                    {
+                        asset = (T)AssetDatabase.LoadAssetAtPath(files[0], typeof(T));
+                    }
                     if (asset == null)
                     {
                         var paths = Directory.GetFiles(
