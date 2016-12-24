@@ -1,0 +1,45 @@
+﻿/*
+﻿The MIT License (MIT)
+Copyright (c) 2016 Taiki Hagiwara
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+https://github.com/TaikiJL/UnityOSS 
+*/
+
+using UnityEditor;
+using UnityEditor.UI;
+
+[CustomEditor(typeof(UIVignetting))]
+public class UIVignettingEditor : GraphicEditor
+{
+
+    protected SerializedProperty m_BorderProperty;
+    protected SerializedProperty m_IntensityProperty;
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+
+        m_BorderProperty = serializedObject.FindProperty("m_Border");
+        m_IntensityProperty = serializedObject.FindProperty("m_Intensity");
+    }
+
+    public override void OnInspectorGUI()
+    {
+        serializedObject.Update();
+
+        EditorGUILayout.PropertyField(m_Color);
+        EditorGUILayout.PropertyField(m_BorderProperty);
+        EditorGUILayout.PropertyField(m_IntensityProperty);
+
+        serializedObject.ApplyModifiedProperties();
+    }
+
+    [MenuItem("GameObject/UI/Vignetting", false, 50)]
+    static void ValidateLogSelectedTransformName()
+    {
+
+    }
+
+}
