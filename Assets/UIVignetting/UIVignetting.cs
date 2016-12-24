@@ -48,14 +48,7 @@ public class UIVignetting : Graphic
     {
         base.OnValidate();
 
-        Debug.Assert(shader != null,
-            "Please assign \"UIVignetting.shader\" as the default shader of the UIVignetting script before creating one.");
-
-        if (m_Material == null)
-        {
-            m_Material = new Material(shader);
-        }
-
+        ClampBorderSize();
         UpdateMaterialParameters();
 
         raycastTarget = false;
@@ -64,14 +57,6 @@ public class UIVignetting : Graphic
     protected override void Awake()
     {
         base.Awake();
-
-        Debug.Assert(shader != null,
-            "Please assign \"UIVignetting.shader\" as the default shader of the UIVignetting script before creating one.");
-
-        if (m_Material == null)
-        {
-            m_Material = new Material(shader);
-        }
 
         m_BorderDistanceID = Shader.PropertyToID("_BorderDistance");
         m_IntensityID = Shader.PropertyToID("_Intensity");
@@ -83,6 +68,14 @@ public class UIVignetting : Graphic
 
     void UpdateMaterialParameters()
     {
+        if (m_Material == null)
+        {
+            Debug.Assert(shader != null,
+                "Please assign \"UIVignetting.shader\" as the default shader of the UIVignetting script before creating one.");
+
+            m_Material = new Material(shader);
+        }
+
         if (m_Material != null)
         {
             float x = m_Border.x / rectTransform.rect.width;
@@ -103,6 +96,11 @@ public class UIVignetting : Graphic
             m_Material.SetFloat(m_BorderDistanceID, Vector2.Dot(coord, coord));
             m_Material.SetFloat(m_IntensityID, m_Intensity);
         }
+    }
+
+    void ClampBorderSize()
+    {
+        
     }
 
     protected override void OnRectTransformDimensionsChange()
