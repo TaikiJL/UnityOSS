@@ -44,15 +44,22 @@ public class UIVignetting : Graphic
         }
     }
 
+#if UNITY_EDITOR
+    protected override void Reset()
+    {
+        base.Reset();
+
+        raycastTarget = false;
+    }
+
     protected override void OnValidate()
     {
         base.OnValidate();
 
         ClampBorderSize();
         UpdateMaterialParameters();
-
-        raycastTarget = false;
     }
+#endif
 
     protected override void Awake()
     {
@@ -70,44 +77,41 @@ public class UIVignetting : Graphic
     {
         if (m_Material == null)
         {
-            Debug.Assert(shader != null,
-                "Please assign \"UIVignetting.shader\" as the default shader of the UIVignetting script before creating one.");
+#if UNITY_EDITOR
+            if (shader == null)
+            {
+                shader = Shader.Find("Hidden/UIVignetting");
+                Debug.Assert(shader != null, "The \"UIVignetting\" shader could not be found in the project.");
+            }
+#endif
 
             m_Material = new Material(shader);
         }
 
-        if (m_Material != null)
-        {
-            float x = m_Border.x / rectTransform.rect.width;
-            float y = m_Border.y / rectTransform.rect.height;
-            x = (x - 0.5f) * 2f;
-            y = (y - 0.5f) * 2f;
-            Vector2 coord = new Vector2(x, y);
+        float x = m_Border.x / rectTransform.rect.width;
+        float y = m_Border.y / rectTransform.rect.height;
+        x = (x - 0.5f) * 2f;
+        y = (y - 0.5f) * 2f;
+        Vector2 coord = new Vector2(x, y);
 
 #if UNITY_EDITOR
-            if (!Application.isPlaying)
-            {
-                m_Material.SetFloat("_BorderDistance", Vector2.Dot(coord, coord));
-                m_Material.SetFloat("_Intensity", m_Intensity);
-                return;
-            }
+        if (!Application.isPlaying)
+        {
+            m_Material.SetFloat("_BorderDistance", Vector2.Dot(coord, coord));
+            m_Material.SetFloat("_Intensity", m_Intensity);
+            return;
+        }
 #endif
 
-            m_Material.SetFloat(m_BorderDistanceID, Vector2.Dot(coord, coord));
-            m_Material.SetFloat(m_IntensityID, m_Intensity);
-        }
+        m_Material.SetFloat(m_BorderDistanceID, Vector2.Dot(coord, coord));
+        m_Material.SetFloat(m_IntensityID, m_Intensity);
     }
 
     void ClampBorderSize()
     {
-        
-    }
-
-    protected override void OnRectTransformDimensionsChange()
-    {
-        UpdateMaterialParameters();
-
-        base.OnRectTransformDimensionsChange();
+        Rect rect = rectTransform.rect;
+        m_Border.x = Mathf.Clamp(m_Border.x, 0f, rect.width * 0.5f);
+        m_Border.y = Mathf.Clamp(m_Border.y, 0f, rect.height * 0.5f);
     }
 
     protected override void OnPopulateMesh(VertexHelper vh)
@@ -152,6 +156,14 @@ public class UIVignetting : Graphic
         // Upper side
         vh.AddTriangle(6, 5, 2);
         vh.AddTriangle(2, 5, 1);
+    }
+
+    protected override void OnRectTransformDimensionsChange()
+    {
+        ClampBorderSize();
+        UpdateMaterialParameters();
+
+        base.OnRectTransformDimensionsChange();
     }
 
 }

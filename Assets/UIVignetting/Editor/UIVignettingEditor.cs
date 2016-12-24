@@ -44,7 +44,7 @@ public class UIVignettingEditor : GraphicEditor
     {
         GameObject child = new GameObject("Vignetting");
         RectTransform rectTransform = child.AddComponent<RectTransform>();
-        rectTransform.sizeDelta = new Vector2(100f, 100f);
+        rectTransform.sizeDelta = new Vector2(200f, 200f);
         child.AddComponent<UIVignetting>();
 
         GameObject parent = menuCommand.context as GameObject;
