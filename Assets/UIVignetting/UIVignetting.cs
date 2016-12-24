@@ -45,6 +45,12 @@ public class UIVignetting : Graphic
     }
 
 #if UNITY_EDITOR
+    /// <summary>
+    /// Editor-only! Do not use it!
+    /// </summary>
+    [System.NonSerialized]
+    public bool showBorder = false;
+
     protected override void Reset()
     {
         base.Reset();
@@ -97,8 +103,8 @@ public class UIVignetting : Graphic
 #if UNITY_EDITOR
         if (!Application.isPlaying)
         {
-            m_Material.SetFloat("_BorderDistance", Vector2.Dot(coord, coord));
-            m_Material.SetFloat("_Intensity", m_Intensity);
+            m_Material.SetFloat("_BorderDistance", showBorder ? 0f : Vector2.Dot(coord, coord));
+            m_Material.SetFloat("_Intensity", showBorder ? 1 : m_Intensity);
             return;
         }
 #endif

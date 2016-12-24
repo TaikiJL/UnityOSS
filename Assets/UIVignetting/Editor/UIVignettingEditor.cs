@@ -7,6 +7,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 https://github.com/TaikiJL/UnityOSS 
 */
 
+using System.Reflection;
 using UnityEditor;
 using UnityEditor.UI;
 using UnityEngine;
@@ -20,12 +21,22 @@ public class UIVignettingEditor : GraphicEditor
     protected SerializedProperty m_BorderProperty;
     protected SerializedProperty m_IntensityProperty;
 
+    private UIVignetting m_Target;
+    private GUIContent m_ShowBorderContent = new GUIContent("Show Border", "Visualize the border mesh.");
+    private MethodInfo m_UpdateMaterialMethod;
+
     protected override void OnEnable()
     {
         base.OnEnable();
 
         m_BorderProperty = serializedObject.FindProperty("m_Border");
         m_IntensityProperty = serializedObject.FindProperty("m_Intensity");
+
+        m_Target = (UIVignetting)target;
+
+        m_UpdateMaterialMethod = m_Target.GetType().GetMethod(
+            "UpdateMaterialParameters",
+            BindingFlags.NonPublic | BindingFlags.Instance);
     }
 
     public override void OnInspectorGUI()
@@ -35,6 +46,13 @@ public class UIVignettingEditor : GraphicEditor
         EditorGUILayout.PropertyField(m_Color);
         EditorGUILayout.PropertyField(m_BorderProperty);
         EditorGUILayout.PropertyField(m_IntensityProperty);
+
+        bool showBorder = EditorGUILayout.ToggleLeft(m_ShowBorderContent, m_Target.showBorder);
+        if (showBorder != m_Target.showBorder)
+        {
+            m_Target.showBorder = showBorder;
+            m_UpdateMaterialMethod.Invoke(m_Target, new object[] { });
+        }
 
         serializedObject.ApplyModifiedProperties();
     }
