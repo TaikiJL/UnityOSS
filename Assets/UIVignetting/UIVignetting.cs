@@ -94,22 +94,23 @@ public class UIVignetting : Graphic
             m_Material = new Material(shader);
         }
 
-        float x = m_Border.x / rectTransform.rect.width;
-        float y = m_Border.y / rectTransform.rect.height;
+        Rect rect = rectTransform.rect;
+        float x = m_Border.x / rect.width;
+        float y = m_Border.y / rect.height;
         x = (x - 0.5f) * 2f;
         y = (y - 0.5f) * 2f;
-        Vector2 coord = new Vector2(x, y);
+        float dotCoord = x * x + y * y;
 
 #if UNITY_EDITOR
         if (!Application.isPlaying)
         {
-            m_Material.SetFloat("_BorderDistance", showBorder ? 0f : Vector2.Dot(coord, coord));
+            m_Material.SetFloat("_BorderDistance", showBorder ? 0f : dotCoord);
             m_Material.SetFloat("_Intensity", showBorder ? 1 : m_Intensity);
             return;
         }
 #endif
 
-        m_Material.SetFloat(m_BorderDistanceID, Vector2.Dot(coord, coord));
+        m_Material.SetFloat(m_BorderDistanceID, dotCoord);
         m_Material.SetFloat(m_IntensityID, m_Intensity);
     }
 
@@ -132,8 +133,8 @@ public class UIVignetting : Graphic
         float borderX = m_Border.x;
         float borderY = m_Border.y;
 
-        float borderWidthRatio = m_Border.x / rect.width;
-        float borderHeightRatio = m_Border.y / rect.height;
+        float borderWidthRatio = borderX / rect.width;
+        float borderHeightRatio = borderY / rect.height;
 
         // Outer vertices
         vh.AddVert(new Vector3(-halfWidth, -halfHeight, 0f), color, new Vector2(0f, 0f));
